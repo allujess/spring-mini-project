@@ -1,6 +1,8 @@
 package hello.core.member;
 
+import hello.core.AppConfig;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemebrServiceTest {
@@ -8,8 +10,13 @@ public class MemebrServiceTest {
 
     //DIP위베 : MemberServiceImpl구현체까지 의존하는것을 볼 수 있다
     //memberService interface의존은 ok
-    MemberService memberService = new MemberServiceImpl();
+    MemberService memberService;
 
+    @BeforeEach
+    public void beforeEach(){
+        AppConfig appConfig = new AppConfig();
+        memberService = appConfig.memberService();
+    }
 
     @Test
     void join(){
